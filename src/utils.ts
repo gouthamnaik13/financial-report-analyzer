@@ -44,14 +44,38 @@ function normalizeKey(key: string): string {
   return key.toLowerCase().replace(/[^a-z0-9]/g, '');
 }
 
+function parseNumericValue(val: unknown): number {
+  if (typeof val === 'number') {
+    return isNaN(val) ? 0 : val;
+  }
+  if (val === null || val === undefined) {
+    return 0;
+  }
+  const str = String(val).trim();
+  if (!str) return 0;
+
+  // Detect accounting parenthesis format: ($50,000) or (50000)
+  const isParenthesesNegative = /^\s*\((.+)\)\s*$/.test(str);
+  // Detect leading minus: -$50,000 or -50000
+  const isMinusNegative = /^\s*-\s*/.test(str);
+  const isNegative = isParenthesesNegative || isMinusNegative;
+
+  // Strip currency symbols, commas, parentheses, plus/minus, whitespace
+  const cleaned = str.replace(/[^0-9.]/g, '');
+  const parsed = parseFloat(cleaned);
+  if (isNaN(parsed)) return 0;
+
+  return isNegative ? -parsed : parsed;
+}
+
 function findValue(row: ParsedRow, ...candidates: string[]): number {
   const normalized = Object.fromEntries(
     Object.entries(row).map(([k, v]) => [normalizeKey(k), v])
   );
   for (const c of candidates) {
     const val = normalized[normalizeKey(c)];
-    if (val !== undefined) {
-      const num = typeof val === 'number' ? val : parseFloat(String(val).replace(/[,$\s]/g, ''));
+    if (val !== undefined && val !== null && val !== '') {
+      const num = parseNumericValue(val);
       if (!isNaN(num)) return num;
     }
   }
