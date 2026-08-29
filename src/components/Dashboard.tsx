@@ -24,7 +24,7 @@ const COLORS = {
   equity: '#7c3aed',
 };
 
-const PIE_COLORS = ['#0284c7', '#f97316', '#7c3aed'];
+const PIE_COLORS = ['#f97316', '#7c3aed'];
 
 // Custom tooltip for charts
 function CustomTooltip({ active, payload, label }: any) {
@@ -75,7 +75,6 @@ export function Dashboard({ report, onReset }: DashboardProps) {
   const { revenue, expenses, netIncome, profitMargin, assets, liabilities, equity } = metrics;
 
   const balancePieData = [
-    { name: 'Assets', value: assets },
     { name: 'Liabilities', value: liabilities },
     { name: 'Equity', value: equity },
   ].filter(d => d.value > 0);
@@ -240,10 +239,12 @@ export function Dashboard({ report, onReset }: DashboardProps) {
           </ResponsiveContainer>
         </div>
 
-        {/* Balance Sheet Pie */}
+        {/* Balance Sheet Funding Structure Pie */}
         <div className="chart-card">
-          <div className="chart-title">Balance Sheet</div>
-          <div className="chart-subtitle">Asset structure overview</div>
+          <div className="chart-title">Balance Sheet Structure</div>
+          <div className="chart-subtitle">
+            Funding composition (Total Assets: {formatCurrency(assets)})
+          </div>
           {balancePieData.length > 0 ? (
             <ResponsiveContainer width="100%" height={280}>
               <PieChart>

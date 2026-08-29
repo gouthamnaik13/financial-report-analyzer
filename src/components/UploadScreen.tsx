@@ -125,7 +125,7 @@ export function UploadScreen({ onAnalyze, onError, onLoading }: UploadScreenProp
     <div className="upload-container">
       <div className="upload-header">
         <h1>Financial Report Analyzer</h1>
-        <p>Upload your financial data and get instant AI-powered analysis, metrics, and actionable insights.</p>
+        <p>Upload your financial data and get instant financial analysis, metrics, and actionable insights.</p>
       </div>
 
       <div className="upload-card">
