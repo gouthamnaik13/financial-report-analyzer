@@ -1,42 +1,53 @@
 # Financial Report Analyzer
 
-A modern, client-side financial report analysis tool built with React + TypeScript + Vite. Upload CSV or XLSX financial reports and instantly get a professional dashboard with key metrics, charts, and AI-generated insights — no backend, no API keys, no database required.
+A modern, client-side financial report analysis web application built with React, TypeScript, and Vite. Upload CSV or XLSX financial statements or use built-in demo data to instantly generate executive financial summaries, key performance metrics, interactive visual charts, and automated insights — 100% in the browser with no backend, no database, and no API keys required.
 
-![Financial Report Analyzer](https://img.shields.io/badge/Status-Production%20Ready-green) ![Tech Stack](https://img.shields.io/badge/Stack-React%20%2B%20TypeScript%20%2B%20Vite-blue)
-
----
-
-## Features
-
-- **Upload CSV or XLSX** financial reports with drag-and-drop
-- **Demo Data mode** — instantly see a complete dashboard without uploading a file
-- **Financial Dashboard** with:
-  - Revenue, Expenses, Net Income, Profit Margin
-  - Total Assets, Liabilities, Shareholders' Equity
-  - Revenue vs. Expenses area chart
-  - Net Income bar chart (by period)
-  - Balance Sheet pie chart
-- **Automated Insights** — profit margin analysis, debt ratios, ROE, and more
-- **Responsive** — works on desktop and mobile
-- **Client-side only** — all parsing and analysis runs in the browser; no data ever leaves your device
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Render-brightgreen?style=for-the-badge&logo=render)](https://financial-report-analyzer-6ybb.onrender.com/)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-blue?style=for-the-badge&logo=github)](https://github.com/gouthamnaik13/financial-report-analyzer)
 
 ---
 
-## Expected CSV Format
+## 🌐 Live Demo
 
-Your CSV file should have a header row. Supported column names (case-insensitive):
+The application is deployed and publicly accessible on Render:
 
-| Column | Aliases |
-|--------|---------|
-| `Period` | `Quarter`, `Date`, `Month`, `Year` |
-| `Revenue` | `Total Revenue`, `Sales`, `Total Sales` |
-| `Expenses` | `Total Expenses`, `Costs`, `Operating Expenses` |
-| `Net Income` | `Net Profit`, `Profit`, `Earnings` |
-| `Assets` | `Total Assets` |
-| `Liabilities` | `Total Liabilities` |
-| `Equity` | `Total Equity`, `Shareholders Equity` |
+🔗 **[https://financial-report-analyzer-6ybb.onrender.com/](https://financial-report-analyzer-6ybb.onrender.com/)**
 
-**Example:**
+---
+
+## 🚀 Key Features
+
+- **File Upload Support (CSV & XLSX)**: Seamless drag-and-drop or file picker for standard financial reports with client-side parsing.
+- **Instant Demo Data**: Test all features immediately without preparing or uploading files with the "Use Demo Data" button.
+- **Executive Financial Dashboard**:
+  - **Core Metrics**: Total Revenue, Total Expenses, Net Income, and Profit Margin.
+  - **Balance Sheet Indicators**: Total Assets, Total Liabilities, and Shareholders' Equity.
+- **Interactive Visualizations**:
+  - **Revenue vs. Expenses**: Area trend line chart over reporting periods.
+  - **Net Income by Period**: Bar chart highlighting profitable periods and losses.
+  - **Balance Sheet Breakdown**: Donut chart displaying asset, liability, and equity distributions.
+- **Automated Financial Insights**: Rule-based analysis evaluating profitability margins, debt-to-asset safety ratios, and return on equity (ROE).
+- **Client-Side Privacy & Security**: All processing and calculations run locally in the browser; no data leaves your machine.
+- **Responsive & Clean Financial SaaS UI**: Polished interface optimized for desktop and mobile viewports with print/PDF export support.
+
+---
+
+## 📊 Expected Data Format
+
+Your CSV or Excel file should have a header row. The analyzer automatically normalizes and detects common column naming conventions:
+
+| Metric | Supported Header Names (Case-Insensitive) |
+|--------|------------------------------------------|
+| **Period** | `Period`, `Quarter`, `Date`, `Month`, `Year`, `Fiscal` |
+| **Revenue** | `Revenue`, `Total Revenue`, `Sales`, `Total Sales`, `Income` |
+| **Expenses** | `Expenses`, `Total Expenses`, `Costs`, `Total Costs`, `Operating Expenses`, `Opex` |
+| **Net Income** | `Net Income`, `Net Profit`, `Profit`, `Earnings` |
+| **Assets** | `Assets`, `Total Assets` |
+| **Liabilities** | `Liabilities`, `Total Liabilities` |
+| **Equity** | `Equity`, `Total Equity`, `Shareholders Equity`, `Stockholders Equity` |
+
+### Sample CSV Structure
+
 ```csv
 Period,Revenue,Expenses,Net Income,Assets,Liabilities,Equity
 Q1 2024,2950000,2100000,850000,26000000,10500000,15500000
@@ -47,16 +58,32 @@ Q4 2024,3250000,2490000,760000,28600000,11200000,17400000
 
 ---
 
-## Quick Start
+## 🛠️ Tech Stack
+
+- **Framework**: React 19 + TypeScript
+- **Bundler & Dev Server**: Vite
+- **Charts & Visualizations**: Recharts
+- **Parsers**:
+  - Papa Parse (CSV)
+  - SheetJS / xlsx (Excel spreadsheets)
+- **Icons**: Lucide React
+- **Styling**: Modern CSS with CSS Custom Properties and responsive design
+
+---
+
+## 💻 Local Development
 
 ### Prerequisites
-- Node.js 18+ and npm
+- Node.js (v18 or higher)
+- npm
 
-### Local Development
+### Installation & Run
 
 ```bash
 # Clone the repository
 git clone https://github.com/gouthamnaik13/financial-report-analyzer.git
+
+# Navigate to the project directory
 cd financial-report-analyzer
 
 # Install dependencies
@@ -68,62 +95,64 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-### Production Build
+### Build & Preview Locally
 
 ```bash
+# Type check and build production bundle
 npm run build
+
+# Preview production build locally
 npm run preview
 ```
 
 ---
 
-## Deployment on Render
+## 🚀 Production Deployment
 
-1. Push this repository to GitHub.
-2. Go to [Render.com](https://render.com) → New → **Static Site**.
-3. Connect your GitHub repository.
-4. Configure:
-   - **Build Command:** `npm install && npm run build`
-   - **Publish Directory:** `dist`
-5. Click **Create Static Site**.
+The project is deployed on **Render** as a Static Site.
 
-Render will automatically deploy on every push to `main`.
+### Render Configuration
+- **Platform**: Render
+- **Type**: Static Site
+- **Build Command**: `npm install && npm run build`
+- **Publish Directory**: `dist`
 
----
-
-## Tech Stack
-
-| Technology | Purpose |
-|-----------|---------|
-| React 19 | UI framework |
-| TypeScript | Type safety |
-| Vite | Build tool & dev server |
-| Recharts | Charts and visualizations |
-| Papa Parse | CSV parsing |
-| SheetJS (xlsx) | Excel file parsing |
-| Lucide React | Icons |
+### Setting Up on Render:
+1. Connect the GitHub repository: [`https://github.com/gouthamnaik13/financial-report-analyzer`](https://github.com/gouthamnaik13/financial-report-analyzer)
+2. Select **Static Site**.
+3. Set the **Build Command** to `npm install && npm run build`.
+4. Set the **Publish Directory** to `dist`.
+5. Deploy. Auto-deploy triggers on every push to the `main` branch.
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```
-src/
-├── components/
-│   ├── Navbar.tsx          # Top navigation bar
-│   ├── UploadScreen.tsx    # File upload + form
-│   ├── LoadingScreen.tsx   # Loading state
-│   ├── Dashboard.tsx       # Results dashboard with charts
-│   └── ErrorScreen.tsx     # Error state
-├── types.ts                # TypeScript interfaces
-├── utils.ts                # Data parsing & calculations
-├── App.tsx                 # Root component & state machine
-├── main.tsx                # Entry point
-└── index.css               # Global styles
+financial-report-analyzer/
+├── public/
+│   ├── favicon.svg          # Custom favicon
+│   └── icons.svg
+├── src/
+│   ├── components/
+│   │   ├── Dashboard.tsx    # Comprehensive financial dashboard & charts
+│   │   ├── ErrorScreen.tsx  # Error state view with retry action
+│   │   ├── LoadingScreen.tsx# Animated analysis loading view
+│   │   ├── Navbar.tsx       # Brand navigation header
+│   │   └── UploadScreen.tsx # File drag-and-drop & configuration form
+│   ├── App.tsx              # Root component & state workflow
+│   ├── index.css            # Professional SaaS design styling
+│   ├── main.tsx             # Application bootstrap
+│   ├── types.ts             # TypeScript definitions
+│   └── utils.ts             # Data parser, demo datasets & ratio calculators
+├── index.html               # Main HTML template
+├── package.json             # Dependencies and scripts
+├── tsconfig.json            # TypeScript configuration
+└── vite.config.ts           # Vite configuration
 ```
 
 ---
 
-## License
+## 📄 License
 
-MIT © 2024 Financial Report Analyzer
+MIT License © 2024 [Financial Report Analyzer](https://github.com/gouthamnaik13/financial-report-analyzer)
